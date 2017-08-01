@@ -13,7 +13,6 @@ services:
   - docker:dind
 
 before_script:
-  - docker info
   - docker login -u $CI_DOCKER_HUB_USER -p $CI_DOCKER_HUB_PASSWORD
 
 build:
