@@ -1,0 +1,43 @@
+image: docker:latest
+
+stages:
+  - build
+  - release
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay
+  CONTAINER_RELEASE_IMAGE: $CI_DOCKER_REPOSITORY:latest
+  CONTAINER_RELEASE_TAGGED_IMAGE $CI_DOCKER_REPOSITORY:$CI_COMMIT_TAG
+
+before_script:
+  - docker login -u $CI_DOCKER_HUB_USER -p $CI_DOCKER_HUB_PASSWORD hub.docker.com
+
+services:
+  - docker:dind
+
+before_script:
+  - docker info
+
+build_image:
+  script:
+    - docker build -t $CI_DOCKER_REPOSITORY .
+    - docker run my-docker-image /script/to/run/tests
+
+deploy:
+  stage: deploy
+  script:
+    - docker tag $CI_DOCKER_REPOSITORY $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+    - development
+
+deploy:
+  stage: deploy
+  script:
+    - docker tag $CI_DOCKER_REPOSITORY $CONTAINER_RELEASE_IMAGE
+    - docker tag $CI_DOCKER_REPOSITORY $CONTAINER_RELEASE_TAGGED_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_TAGGED_IMAGE
+  only:
+    - master
