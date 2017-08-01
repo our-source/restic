@@ -9,14 +9,12 @@ variables:
   CONTAINER_RELEASE_IMAGE: $CI_DOCKER_REPOSITORY:latest
   CONTAINER_RELEASE_TAGGED_IMAGE: $CI_DOCKER_REPOSITORY:$CI_COMMIT_TAG
 
-before_script:
-  - docker login -u $CI_DOCKER_HUB_USER -p $CI_DOCKER_HUB_PASSWORD hub.docker.com
-
 services:
   - docker:dind
 
 before_script:
   - docker info
+  - docker login -u '$CI_DOCKER_HUB_USER' -p '$CI_DOCKER_HUB_PASSWORD'
 
 build:
   stage: build
