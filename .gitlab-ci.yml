@@ -22,7 +22,7 @@ build:
   stage: build
   script:
     - docker build -t $CI_DOCKER_REPOSITORY .
-    - docker run my-docker-image /script/to/run/tests
+#    - docker run $CI_DOCKER_REPOSITORY /script/to/run/tests
 
 deploy_development:
   stage: deploy
