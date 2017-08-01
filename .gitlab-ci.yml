@@ -21,7 +21,7 @@ before_script:
 build:
   stage: build
   script:
-    - docker build -t $CI_DOCKER_REPOSITORY .
+    - docker build --no-cache -t $CI_DOCKER_REPOSITORY .
 #    - docker run $CI_DOCKER_REPOSITORY /script/to/run/tests
 
 deploy_development:
