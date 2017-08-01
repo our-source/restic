@@ -1,5 +1,6 @@
 # docker-restic
 
+[![Build Status](https://gitlab.smitsmail.net/johan.smits/docker-restic/badges/branch/build.svg)](https://gitlab.smitsmail.net/johan.smits/docker-restic/-/jobs)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jsmitsnl/docker-restic.svg)](https://hub.docker.com/r/jsmitsnl/docker-restic/)
 [![Gitter](https://img.shields.io/gitter/room/docker-restic/Lobby.svg)](https://gitter.im/docker-restic/Lobby)
 
