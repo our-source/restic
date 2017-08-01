@@ -2,7 +2,6 @@ image: docker:latest
 
 stages:
   - build
-  - release
   - deploy
 
 variables:
@@ -19,12 +18,13 @@ services:
 before_script:
   - docker info
 
-build_image:
+build:
+  stage: build
   script:
     - docker build -t $CI_DOCKER_REPOSITORY .
     - docker run my-docker-image /script/to/run/tests
 
-deploy:
+deploy_development:
   stage: deploy
   script:
     - docker tag $CI_DOCKER_REPOSITORY $CONTAINER_RELEASE_IMAGE
@@ -32,12 +32,18 @@ deploy:
   only:
     - development
 
-deploy:
+deploy_master:
   stage: deploy
   script:
     - docker tag $CI_DOCKER_REPOSITORY $CONTAINER_RELEASE_IMAGE
-    - docker tag $CI_DOCKER_REPOSITORY $CONTAINER_RELEASE_TAGGED_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
-    - docker push $CONTAINER_RELEASE_TAGGED_IMAGE
   only:
     - master
+
+deploy_tags:
+  stage: deploy
+  script:
+    - docker tag $CI_DOCKER_REPOSITORY $CONTAINER_RELEASE_TAGGED_IMAGE
+    - docker push $CONTAINER_RELEASE_TAGGED_IMAGE
+  only:
+    - tags
