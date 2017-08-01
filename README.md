@@ -17,10 +17,11 @@ Includes:
 #### Get latest image
 You can run restic command very like this:
 
-    docker pull jsmitsnl/docker-restic:latest
-
-
+```bash
+docker pull jsmitsnl/docker-restic:latest
 ```
+
+```bash
 docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
                 -e AWS_ACCESS_KEY_ID="keyid" \
                 -e AWS_SECRET_ACCESS_KEY="topsecret" \
@@ -131,7 +132,7 @@ A full explanation of the commands and options you can refer to the [manual](htt
 
 #### Initialize the repository
 
-```
+```bash
 docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
                 -e AWS_ACCESS_KEY_ID="keyid" \
                 -e AWS_SECRET_ACCESS_KEY="topsecret" \
@@ -143,7 +144,7 @@ docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
 
 #### List the snapshots
 
-```
+```bash
 docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
                 -e AWS_ACCESS_KEY_ID="keyid" \
                 -e AWS_SECRET_ACCESS_KEY="topsecret" \
@@ -156,7 +157,7 @@ docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
 
 #### Restore a snapshot
 
-```
+```bash
 docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
                 -e AWS_ACCESS_KEY_ID="keyid" \
                 -e AWS_SECRET_ACCESS_KEY="topsecret" \
