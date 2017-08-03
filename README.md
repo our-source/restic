@@ -167,6 +167,13 @@ docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
                 restic restore _id_ --target /data/restore_location
 ```
 
+#### Start a backup now when the container is running with the name _restic_
+
+```bash
+docker exec restic supervisorctl start restic_backup
+```
+
+
 
 ## Environment variables
 
