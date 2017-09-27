@@ -1,5 +1,6 @@
 # docker-restic
 
+[![Build Status](https://gitlab.smitsmail.net/johan.smits/docker-restic/badges/branch/build.svg)](https://gitlab.smitsmail.net/johan.smits/docker-restic/-/jobs)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jsmitsnl/docker-restic.svg)](https://hub.docker.com/r/jsmitsnl/docker-restic/)
 [![Gitter](https://img.shields.io/gitter/room/docker-restic/Lobby.svg)](https://gitter.im/docker-restic/Lobby)
 
@@ -165,6 +166,13 @@ docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
                 -v /:/data
                 restic restore _id_ --target /data/restore_location
 ```
+
+#### Start a backup now when the container is running with the name _restic_
+
+```bash
+docker exec restic supervisorctl start restic_backup
+```
+
 
 
 ## Environment variables
