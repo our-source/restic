@@ -121,7 +121,7 @@ services:
 
 #### Start the container
 
-    docker-compose up -d mail
+    docker-compose up -d restic
 
 You're done!
 
