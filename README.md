@@ -173,6 +173,12 @@ docker run --rm -e RESTIC_REPOSITORY="s3:https://s3.amazonaws.com/some-repo" \
 docker exec restic supervisorctl start restic_backup
 ```
 
+#### Run any command in the container
+
+```bash
+docker exec -ti restic _command_
+```
+
 
 
 ## Environment variables
