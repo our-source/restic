@@ -1,8 +1,6 @@
 # docker-restic
 
-[![Build Status](https://gitlab.smitsmail.net/johan.smits/docker-restic/badges/branch/build.svg)](https://gitlab.smitsmail.net/johan.smits/docker-restic/-/jobs)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jsmitsnl/docker-restic.svg)](https://hub.docker.com/r/jsmitsnl/docker-restic/)
-[![Gitter](https://img.shields.io/gitter/room/docker-restic/Lobby.svg)](https://gitter.im/docker-restic/Lobby)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jsmitsnl/docker-restic.svg)](https://hub.docker.com/r/jsmitsnl/docker-restic/) [![Docker layers](https://images.microbadger.com/badges/image/jsmitsnl/docker-restic.svg)](https://microbadger.com/images/jsmitsnl/docker-restic) [![Github Stars](https://img.shields.io/github/stars/johansmitsnl/docker-restic.svg?label=github%20%E2%98%85)](https://github.com/johansmitsnl/docker-restic/) [![Github Stars](https://img.shields.io/github/contributors/johansmitsnl/docker-restic.svg)](https://github.com/johansmitsnl/docker-restic/) [![Github Forks](https://img.shields.io/github/forks/johansmitsnl/docker-restic.svg?label=github%20forks)](https://github.com/johansmitsnl/docker-restic/)
 
 Restic is a fantastic backup tool. To wrap this in a usefull and flexible docker container there is this repo.
 
