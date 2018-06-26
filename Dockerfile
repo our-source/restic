@@ -1,7 +1,7 @@
 FROM golang:1.8.3-alpine
 MAINTAINER Johan Smits <johan@smitsmail.net>
 
-ENV RESTIC_VERSION="0.8.2"
+ENV RESTIC_VERSION="0.9.1"
 
 # Backup options
 ENV RESTIC_BACKUP_OPTIONS=""
