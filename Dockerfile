@@ -1,4 +1,4 @@
-FROM golang:1.8.3-alpine
+FROM golang:1.9-alpine
 MAINTAINER Johan Smits <johan@smitsmail.net>
 
 ENV RESTIC_VERSION="0.9.1"
