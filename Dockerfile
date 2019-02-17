@@ -1,7 +1,7 @@
-FROM golang:1.9-alpine
+FROM golang:1.11-alpine
 MAINTAINER Johan Smits <johan@smitsmail.net>
 
-ENV RESTIC_VERSION="0.9.1"
+ENV RESTIC_VERSION="0.9.4"
 
 # Backup options
 ENV RESTIC_BACKUP_OPTIONS=""
