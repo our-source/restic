@@ -25,7 +25,7 @@ ADD ./target/supervisor_restic.ini /etc/supervisor.d/restic.ini
 
 # Install the items
 RUN apk update \
-  && apk add ca-certificates wget supervisor gnupg \
+  && apk add ca-certificates wget supervisor gnupg git \
   && update-ca-certificates \
   && wget -O /tmp/restic-${RESTIC_VERSION}.tar.gz "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic-${RESTIC_VERSION}.tar.gz" \
   && cd /tmp \
