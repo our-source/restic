@@ -41,7 +41,7 @@ ADD ./target/start_cron.sh /go/bin
 ADD ./target/supervisor_restic.ini /etc/supervisor.d/restic.ini
 
 RUN apk update && \
-    apk add ca-certificates supervisor gnupg && \
+    apk add ca-certificates supervisor gnupg openssh && \
     chmod +x /go/bin/start_cron.sh && \
     mkdir -p /var/log/supervisor && \
     rm -rf /var/cache/apk/*
