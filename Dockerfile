@@ -1,7 +1,23 @@
+# Build Phase
 FROM golang:1.11-alpine
-MAINTAINER Johan Smits <johan@smitsmail.net>
 
 ENV RESTIC_VERSION="0.9.4"
+
+# Install the items
+RUN apk update \
+  && apk add ca-certificates wget gnupg git \
+  && update-ca-certificates \
+  && wget -O /tmp/restic-${RESTIC_VERSION}.tar.gz "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic-${RESTIC_VERSION}.tar.gz" \
+  && cd /tmp \
+  && tar -xf /tmp/restic-${RESTIC_VERSION}.tar.gz -C /tmp/ \
+  && cd /tmp/restic-${RESTIC_VERSION} \
+  && go run build.go \
+  && mv restic /go/bin/restic \
+  && rm -rf /tmp/restic* /var/cache/apk/*
+
+
+# Release phase
+FROM golang:1.11-alpine
 
 # Backup options
 ENV RESTIC_BACKUP_OPTIONS=""
@@ -20,23 +36,15 @@ ENV CRON_BACKUP_EXPRESSION="15   3  *   *   *"
 ENV CRON_CLEANUP_EXPRESSION="15  0  0   *   *"
 
 # Script and config
+COPY --from=0 /go/bin/restic /go/bin/restic
 ADD ./target/start_cron.sh /go/bin
 ADD ./target/supervisor_restic.ini /etc/supervisor.d/restic.ini
 
-# Install the items
-RUN apk update \
-  && apk add ca-certificates wget supervisor gnupg git \
-  && update-ca-certificates \
-  && wget -O /tmp/restic-${RESTIC_VERSION}.tar.gz "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic-${RESTIC_VERSION}.tar.gz" \
-  && cd /tmp \
-  && tar -xf /tmp/restic-${RESTIC_VERSION}.tar.gz -C /tmp/ \
-  && cd /tmp/restic-${RESTIC_VERSION} \
-  && go run build.go \
-  && mv restic /go/bin/restic \
-  && chmod +x /go/bin/start_cron.sh \
-  && cd / \
-  && mkdir -p /var/log/supervisor \
-  && rm -rf /tmp/restic* /var/cache/apk/*
+RUN apk update && \
+    apk add ca-certificates supervisor gnupg && \
+    chmod +x /go/bin/start_cron.sh && \
+    mkdir -p /var/log/supervisor && \
+    rm -rf /var/cache/apk/*
 
 # Start the process
 CMD supervisord -c /etc/supervisord.conf
