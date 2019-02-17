@@ -7,7 +7,7 @@ ENV RESTIC_VERSION="0.9.4"
 RUN apk update \
   && apk add ca-certificates wget gnupg git \
   && update-ca-certificates \
-  && wget -O /tmp/restic-${RESTIC_VERSION}.tar.gz "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic-${RESTIC_VERSION}.tar.gz" \
+  && wget -qO /tmp/restic-${RESTIC_VERSION}.tar.gz "https://github.com/restic/restic/releases/download/v${RESTIC_VERSION}/restic-${RESTIC_VERSION}.tar.gz" \
   && cd /tmp \
   && tar -xf /tmp/restic-${RESTIC_VERSION}.tar.gz -C /tmp/ \
   && cd /tmp/restic-${RESTIC_VERSION} \
