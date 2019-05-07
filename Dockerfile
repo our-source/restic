@@ -1,7 +1,7 @@
 # Build Phase
 FROM golang:1.11-alpine
 
-ENV RESTIC_VERSION="0.9.4"
+ENV RESTIC_VERSION="0.9.5"
 
 # Install the items
 RUN apk update \
