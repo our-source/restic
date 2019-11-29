@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.9.6
+
+  * Update Golang to version 1.13
+  * Update Restic to 0.9.6
+
 ## v0.9.5
 
   * Add ssh client for sftp backend
